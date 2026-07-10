@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Isha's Cabin | A-Frame Resort in San Pablo City, Laguna" },
+      { title: "Isha's Cabin" },
       {
         name: "description",
         content:
@@ -83,19 +83,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Isha's Cabin" },
       { property: "og:site_name", content: "Isha's Cabin" },
-      { property: "og:title", content: "Isha's Cabin | A-Frame Resort in San Pablo, Laguna" },
+      { property: "og:title", content: "Isha's Cabin" },
       {
         property: "og:description",
         content:
-          "A relaxing mini A-frame cabin resort with a private pool in San Pablo, Laguna. Starting at ₱2,500 for up to 8 pax.",
+          "Isha's Cabin is a mini A-frame cabin resort in San Pablo, Laguna with a private pool. Perfect for family gatherings, birthdays and quiet getaways — starting at ₱2,500 for up to 8 pax.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#3F3F3F" },
+      { name: "twitter:title", content: "Isha's Cabin" },
+      { name: "twitter:description", content: "Isha's Cabin is a mini A-frame cabin resort in San Pablo, Laguna with a private pool. Perfect for family gatherings, birthdays and quiet getaways — starting at ₱2,500 for up to 8 pax." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f28dec14-f02c-4ae6-9ff6-e8b9cd07fc15/id-preview-0f3cfef0--aa680122-ba47-4e5e-821d-783527adc82e.lovable.app-1783686475826.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f28dec14-f02c-4ae6-9ff6-e8b9cd07fc15/id-preview-0f3cfef0--aa680122-ba47-4e5e-821d-783527adc82e.lovable.app-1783686475826.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
