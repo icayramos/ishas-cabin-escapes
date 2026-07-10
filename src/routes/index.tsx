@@ -440,23 +440,8 @@ function Amenities() {
   );
 }
 
-type GalleryItem = {
-  src: string;
-  cat: "Exterior" | "Pool" | "Interiors" | "Moments";
-  aspect: string;
-  alt: string;
-};
-
-const GALLERY: GalleryItem[] = [
-  { src: galExt1, cat: "Exterior", aspect: "aspect-[4/5]", alt: "A-frame cabins at golden hour" },
-  { src: galPool1, cat: "Pool", aspect: "aspect-[4/3]", alt: "Private resort pool at dusk" },
-  { src: galInt1, cat: "Interiors", aspect: "aspect-[4/5]", alt: "Cozy A-frame cabin interior" },
-  { src: galPool2, cat: "Pool", aspect: "aspect-[4/3]", alt: "Overhead view of pool and cabins" },
-  { src: galExt2, cat: "Exterior", aspect: "aspect-[4/5]", alt: "A-frame roof against sunset" },
-  { src: galMoments1, cat: "Moments", aspect: "aspect-[4/3]", alt: "Friends gathering at the cabin" },
-];
-
 const CATS = ["All", "Exterior", "Pool", "Interiors", "Moments"] as const;
+
 
 function Gallery({ onOpenTour }: { onOpenTour: () => void }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
