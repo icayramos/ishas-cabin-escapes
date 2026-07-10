@@ -440,7 +440,7 @@ function Amenities() {
   );
 }
 
-const CATS = ["All", "Exterior", "Pool", "Interiors", "Moments"] as const;
+
 
 
 function Gallery({ onOpenTour }: { onOpenTour: () => void }) {
