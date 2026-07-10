@@ -205,23 +205,60 @@ function Nav() {
 }
 
 function Hero() {
-  return (
-    <section id="top" className="relative min-h-[100svh] w-full overflow-hidden">
-      <video
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={heroPoster.url}
-        preload="metadata"
-      >
-        <source src={heroVideo.url} type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/40 to-primary/80" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(0,0,0,0.35)_100%)]" />
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = HERO_SLIDES.length;
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 pt-28 pb-20 md:px-8">
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIndex((i) => (i + 1) % count), 5000);
+    return () => clearInterval(t);
+  }, [paused, count]);
+
+  // Swipe support
+  useEffect(() => {
+    let startX = 0;
+    const onStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+    };
+    const onEnd = (e: TouchEvent) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) < 40) return;
+      setIndex((i) => (dx < 0 ? (i + 1) % count : (i - 1 + count) % count));
+    };
+    const el = document.getElementById("hero-carousel");
+    el?.addEventListener("touchstart", onStart, { passive: true });
+    el?.addEventListener("touchend", onEnd, { passive: true });
+    return () => {
+      el?.removeEventListener("touchstart", onStart);
+      el?.removeEventListener("touchend", onEnd);
+    };
+  }, [count]);
+
+  return (
+    <section
+      id="top"
+      className="relative min-h-[100svh] w-full overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div id="hero-carousel" className="absolute inset-0">
+        {HERO_SLIDES.map((s, i) => (
+          <img
+            key={s.src}
+            src={s.src}
+            alt={s.alt}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out ${
+              i === index ? "opacity-100" : "opacity-0"
+            }`}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/25 to-primary/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-transparent to-transparent" />
+
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 pt-28 pb-24 md:px-8">
         <div className="inline-flex items-center gap-2 self-start rounded-full border border-cream/30 bg-cream/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-cream backdrop-blur-sm">
           <Sparkles className="h-3.5 w-3.5" />
           Newly Opened · San Pablo, Laguna
@@ -230,23 +267,25 @@ function Hero() {
           Your relaxing escape<br />
           <span className="italic text-cream/90">in San Pablo, Laguna.</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-base text-cream/85 md:text-lg">
+        <p className="mt-6 max-w-2xl text-base text-cream/90 md:text-lg">
           Mini A-frame cabins, a private pool, and quality time with the people
           you love — starting at{" "}
           <span className="text-cream font-medium">₱2,500 for up to 8 pax</span>.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <a
-            href="#rates"
+            href={FB_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-cream px-6 py-3.5 text-sm font-medium text-primary transition hover:bg-cream/90"
           >
-            Check Rates <ArrowRight className="h-4 w-4" />
+            Book Now <ArrowRight className="h-4 w-4" />
           </a>
           <a
             href={FB_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-cream/40 bg-transparent px-6 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition hover:bg-cream/10"
+            className="inline-flex items-center gap-2 rounded-full border border-cream/40 bg-cream/5 px-6 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition hover:bg-cream/15"
           >
             <MessageCircle className="h-4 w-4" />
             Message Us on Facebook
@@ -265,13 +304,19 @@ function Hero() {
         </div>
       </div>
 
-      <a
-        href="#about"
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-cream/80 hover:text-cream"
-        aria-label="Scroll down"
-      >
-        <ChevronDown className="h-6 w-6 animate-bounce" />
-      </a>
+      {/* Carousel indicators */}
+      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            aria-label={`Show slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all ${
+              i === index ? "w-8 bg-cream" : "w-4 bg-cream/40 hover:bg-cream/70"
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 }
