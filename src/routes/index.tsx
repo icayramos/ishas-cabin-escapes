@@ -20,28 +20,36 @@ import {
 
 import heroVideo from "@/assets/hero-video.asset.json";
 import logoAsset from "@/assets/logo.asset.json";
-import galExt1 from "@/assets/gallery-exterior-1.jpg";
-import galExt2 from "@/assets/gallery-exterior-2.jpg";
-import galPool1 from "@/assets/gallery-pool-1.jpg";
-import galPool2 from "@/assets/gallery-pool-2.jpg";
-import galInt1 from "@/assets/gallery-interior-1.jpg";
-import galMoments1 from "@/assets/gallery-moments-1.jpg";
+import p01 from "@/assets/photos/p01.asset.json";
+import p02 from "@/assets/photos/p02.asset.json";
+import p03 from "@/assets/photos/p03.asset.json";
+import p04 from "@/assets/photos/p04.asset.json";
+import p05 from "@/assets/photos/p05.asset.json";
+import p06 from "@/assets/photos/p06.asset.json";
+import p07 from "@/assets/photos/p07.asset.json";
+import p08 from "@/assets/photos/p08.asset.json";
+import p09 from "@/assets/photos/p09.asset.json";
+import p10 from "@/assets/photos/p10.asset.json";
 
 const HERO_SLIDES = [
-  { src: galExt1, alt: "A-frame cabins at golden hour" },
-  { src: galPool1, alt: "Private resort pool at dusk" },
-  { src: galInt1, alt: "Cozy A-frame cabin interior" },
-  { src: galExt2, alt: "A-frame roofline against a warm sky" },
-  { src: galMoments1, alt: "Friends gathering at the cabin" },
+  { src: p03.url, alt: "A-frame cabin exterior in the trees" },
+  { src: p10.url, alt: "Resort pool at golden hour" },
+  { src: p06.url, alt: "Cozy A-frame cabin interior" },
+  { src: p05.url, alt: "Cabins glowing at night" },
+  { src: p08.url, alt: "Lifestyle view of the resort grounds" },
 ];
 
 const GALLERY_PHOTOS = [
-  { src: galExt1, alt: "A-frame cabins at golden hour" },
-  { src: galPool1, alt: "Private pool with warm evening light" },
-  { src: galInt1, alt: "Cozy A-frame cabin interior" },
-  { src: galPool2, alt: "Overhead view of the pool and cabins" },
-  { src: galExt2, alt: "A-frame roofline against a warm sky" },
-  { src: galMoments1, alt: "Friends gathering at the cabin" },
+  { src: p03.url, alt: "A-frame cabin exterior in the trees" },
+  { src: p10.url, alt: "Resort pool at golden hour" },
+  { src: p05.url, alt: "Cabins glowing at night" },
+  { src: p06.url, alt: "Cozy A-frame cabin interior" },
+  { src: p08.url, alt: "Lifestyle view of the resort grounds" },
+  { src: p01.url, alt: "Loft bed inside the A-frame" },
+  { src: p07.url, alt: "Daybed lounge area" },
+  { src: p02.url, alt: "Rattan chair detail" },
+  { src: p09.url, alt: "Pool framed by tropical plants" },
+  { src: p04.url, alt: "Pool illuminated at night" },
 ];
 
 export const Route = createFileRoute("/")({
