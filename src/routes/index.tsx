@@ -564,7 +564,7 @@ function Rates() {
     <section id="rates" className="relative overflow-hidden bg-primary py-24 text-cream md:py-32">
       <div className="absolute inset-0 opacity-30">
         <img
-          src={galPool2}
+          src={p09.url}
           alt=""
           className="h-full w-full object-cover"
           loading="lazy"
