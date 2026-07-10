@@ -19,7 +19,6 @@ import {
 } from "lucide-react";
 
 import heroVideo from "@/assets/hero-video.asset.json";
-import heroPoster from "@/assets/hero-poster.asset.json";
 import logoAsset from "@/assets/logo.asset.json";
 import galExt1 from "@/assets/gallery-exterior-1.jpg";
 import galExt2 from "@/assets/gallery-exterior-2.jpg";
@@ -27,6 +26,23 @@ import galPool1 from "@/assets/gallery-pool-1.jpg";
 import galPool2 from "@/assets/gallery-pool-2.jpg";
 import galInt1 from "@/assets/gallery-interior-1.jpg";
 import galMoments1 from "@/assets/gallery-moments-1.jpg";
+
+const HERO_SLIDES = [
+  { src: galExt1, alt: "A-frame cabins at golden hour" },
+  { src: galPool1, alt: "Private resort pool at dusk" },
+  { src: galInt1, alt: "Cozy A-frame cabin interior" },
+  { src: galExt2, alt: "A-frame roofline against a warm sky" },
+  { src: galMoments1, alt: "Friends gathering at the cabin" },
+];
+
+const GALLERY_PHOTOS = [
+  { src: galExt1, alt: "A-frame cabins at golden hour" },
+  { src: galPool1, alt: "Private pool with warm evening light" },
+  { src: galInt1, alt: "Cozy A-frame cabin interior" },
+  { src: galPool2, alt: "Overhead view of the pool and cabins" },
+  { src: galExt2, alt: "A-frame roofline against a warm sky" },
+  { src: galMoments1, alt: "Friends gathering at the cabin" },
+];
 
 export const Route = createFileRoute("/")({
   component: Index,
