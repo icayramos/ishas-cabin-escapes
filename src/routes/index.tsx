@@ -451,9 +451,25 @@ const GALLERY: GalleryItem[] = [
 const CATS = ["All", "Exterior", "Pool", "Interiors", "Moments"] as const;
 
 function Gallery({ onOpenTour }: { onOpenTour: () => void }) {
-  const [active, setActive] = useState<(typeof CATS)[number]>("All");
-  const [lightbox, setLightbox] = useState<GalleryItem | null>(null);
-  const items = active === "All" ? GALLERY : GALLERY.filter((g) => g.cat === active);
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const close = () => setLightbox(null);
+  const next = () =>
+    setLightbox((i) => (i === null ? i : (i + 1) % GALLERY_PHOTOS.length));
+  const prev = () =>
+    setLightbox((i) =>
+      i === null ? i : (i - 1 + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length,
+    );
+
+  useEffect(() => {
+    if (lightbox === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightbox]);
 
   return (
     <section id="gallery" className="bg-cream py-24 md:py-32">
@@ -464,38 +480,30 @@ function Gallery({ onOpenTour }: { onOpenTour: () => void }) {
             <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl text-balance">
               A peek inside the cabin.
             </h2>
+            <p className="mt-4 text-foreground/70">
+              A curated look at the cabins, the pool, and the little moments in
+              between.
+            </p>
           </div>
           <button
             onClick={onOpenTour}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-5 py-3 text-sm text-primary transition hover:bg-primary hover:text-primary-foreground"
+            className="group inline-flex items-center gap-3 rounded-full border border-primary/20 bg-background px-5 py-3 text-sm text-primary transition hover:bg-primary hover:text-primary-foreground"
           >
-            <Play className="h-4 w-4 fill-current" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-sage text-sage-foreground transition group-hover:bg-cream group-hover:text-primary">
+              <Play className="h-3.5 w-3.5 translate-x-[1px] fill-current" />
+            </span>
             Watch the Tour
           </button>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-2">
-          {CATS.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActive(c)}
-              className={`rounded-full border px-4 py-1.5 text-sm transition ${
-                active === c
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-background text-foreground/70 hover:border-primary/40"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
-          {items.map((g, i) => (
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
+          {GALLERY_PHOTOS.map((g, i) => (
             <button
               key={i}
-              onClick={() => setLightbox(g)}
-              className={`group relative overflow-hidden rounded-2xl bg-muted ${g.aspect}`}
+              onClick={() => setLightbox(i)}
+              className={`group relative overflow-hidden rounded-2xl bg-muted ${
+                i % 5 === 0 ? "aspect-[4/5]" : "aspect-[4/3]"
+              }`}
             >
               <img
                 src={g.src}
@@ -503,29 +511,46 @@ function Gallery({ onOpenTour }: { onOpenTour: () => void }) {
                 loading="lazy"
                 className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[10px] uppercase tracking-widest text-primary backdrop-blur-sm">
-                {g.cat}
-              </span>
             </button>
           ))}
         </div>
       </div>
 
-      {lightbox && (
+      {lightbox !== null && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-primary/90 p-4 backdrop-blur-sm"
-          onClick={() => setLightbox(null)}
+          onClick={close}
         >
           <button
             className="absolute right-6 top-6 text-cream"
-            onClick={() => setLightbox(null)}
+            onClick={close}
             aria-label="Close"
           >
             <X className="h-7 w-7" />
           </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="Previous"
+            className="absolute left-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 bg-cream/10 text-cream backdrop-blur-sm hover:bg-cream/20 md:left-8"
+          >
+            <ArrowRight className="h-5 w-5 rotate-180" />
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="Next"
+            className="absolute right-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 bg-cream/10 text-cream backdrop-blur-sm hover:bg-cream/20 md:right-8"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
           <img
-            src={lightbox.src}
-            alt={lightbox.alt}
+            src={GALLERY_PHOTOS[lightbox].src}
+            alt={GALLERY_PHOTOS[lightbox].alt}
             className="max-h-[85vh] max-w-full rounded-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
           />
