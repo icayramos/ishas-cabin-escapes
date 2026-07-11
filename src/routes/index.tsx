@@ -18,38 +18,38 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import heroVideo from "@/assets/hero-video.asset.json";
-import logoAsset from "@/assets/logo.asset.json";
-import p01 from "@/assets/photos/p01.asset.json";
-import p02 from "@/assets/photos/p02.asset.json";
-import p03 from "@/assets/photos/p03.asset.json";
-import p04 from "@/assets/photos/p04.asset.json";
-import p05 from "@/assets/photos/p05.asset.json";
-import p06 from "@/assets/photos/p06.asset.json";
-import p07 from "@/assets/photos/p07.asset.json";
-import p08 from "@/assets/photos/p08.asset.json";
-import p09 from "@/assets/photos/p09.asset.json";
-import p10 from "@/assets/photos/p10.asset.json";
+import heroVideo from "@/assets/hero-video.mp4";
+import logoAsset from "@/assets/logo.jpg";
+import p01 from "@/assets/photos/p01.png";
+import p02 from "@/assets/photos/p02.png";
+import p03 from "@/assets/photos/p03.png";
+import p04 from "@/assets/photos/p04.png";
+import p05 from "@/assets/photos/p05.png";
+import p06 from "@/assets/photos/p06.png";
+import p07 from "@/assets/photos/p07.png";
+import p08 from "@/assets/photos/p08.png";
+import p09 from "@/assets/photos/p09.png";
+import p10 from "@/assets/photos/p10.png";
 
 const HERO_SLIDES = [
-  { src: p03.url, alt: "A-frame cabin exterior in the trees" },
-  { src: p10.url, alt: "Resort pool at golden hour" },
-  { src: p06.url, alt: "Cozy A-frame cabin interior" },
-  { src: p05.url, alt: "Cabins glowing at night" },
-  { src: p08.url, alt: "Lifestyle view of the resort grounds" },
+  { src: p03, alt: "A-frame cabin exterior in the trees" },
+  { src: p10, alt: "Resort pool at golden hour" },
+  { src: p06, alt: "Cozy A-frame cabin interior" },
+  { src: p05, alt: "Cabins glowing at night" },
+  { src: p08, alt: "Lifestyle view of the resort grounds" },
 ];
 
 const GALLERY_PHOTOS = [
-  { src: p03.url, alt: "A-frame cabin exterior in the trees" },
-  { src: p10.url, alt: "Resort pool at golden hour" },
-  { src: p05.url, alt: "Cabins glowing at night" },
-  { src: p06.url, alt: "Cozy A-frame cabin interior" },
-  { src: p08.url, alt: "Lifestyle view of the resort grounds" },
-  { src: p01.url, alt: "Loft bed inside the A-frame" },
-  { src: p07.url, alt: "Daybed lounge area" },
-  { src: p02.url, alt: "Rattan chair detail" },
-  { src: p09.url, alt: "Pool framed by tropical plants" },
-  { src: p04.url, alt: "Pool illuminated at night" },
+  { src: p03, alt: "A-frame cabin exterior in the trees" },
+  { src: p10, alt: "Resort pool at golden hour" },
+  { src: p05, alt: "Cabins glowing at night" },
+  { src: p06, alt: "Cozy A-frame cabin interior" },
+  { src: p08, alt: "Lifestyle view of the resort grounds" },
+  { src: p01, alt: "Loft bed inside the A-frame" },
+  { src: p07, alt: "Daybed lounge area" },
+  { src: p02, alt: "Rattan chair detail" },
+  { src: p09, alt: "Pool framed by tropical plants" },
+  { src: p04, alt: "Pool illuminated at night" },
 ];
 
 export const Route = createFileRoute("/")({
@@ -88,7 +88,7 @@ const NAV = [
 function LogoMark({ className = "" }: { className?: string }) {
   return (
     <img
-      src={logoAsset.url}
+      src={logoAsset}
       alt="Isha's Cabin logo"
       className={className}
       loading="eager"
@@ -987,7 +987,7 @@ function TourModal({ open, onClose }: { open: boolean; onClose: () => void }) {
         <X className="h-7 w-7" />
       </button>
       <video
-        src={heroVideo.url}
+        src={heroVideo}
         controls
         autoPlay
         playsInline
