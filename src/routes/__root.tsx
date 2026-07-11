@@ -94,8 +94,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#3F3F3F" },
       { name: "twitter:title", content: "Isha's Cabin" },
       { name: "twitter:description", content: "Isha's Cabin is a mini A-frame cabin resort in San Pablo, Laguna with a private pool. Perfect for family gatherings, birthdays and quiet getaways — starting at ₱2,500 for up to 8 pax." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f28dec14-f02c-4ae6-9ff6-e8b9cd07fc15/id-preview-0f3cfef0--aa680122-ba47-4e5e-821d-783527adc82e.lovable.app-1783686475826.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f28dec14-f02c-4ae6-9ff6-e8b9cd07fc15/id-preview-0f3cfef0--aa680122-ba47-4e5e-821d-783527adc82e.lovable.app-1783686475826.png" },
+      { property: "og:image", content: "https://ishas-cabin-escapes-xxt2.vercel.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://ishas-cabin-escapes-xxt2.vercel.app/og-image.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -1,29 +1,22 @@
-HOW TO APPLY THIS FIX (complete version - photos + video + logo)
-==================================================================
+HOW TO APPLY THIS FIX (link preview image for Messenger/Facebook/etc)
+=======================================================================
 
-1. Unzip into the ROOT of your local ishas-cabin-escapes repo,
-   overwriting when prompted. It will:
-   - replace src/routes/index.tsx
-   - add src/assets/photos/p01.png ... p10.png
-   - add src/assets/hero-video.mp4
-   - add src/assets/logo.jpg
+Problem: og:image meta tag pointed to Lovable's own storage bucket
+instead of your site, so link previews (Messenger, FB, etc.) had
+nothing reliable to load.
 
-2. Delete these old, now-unused files from your repo if still present:
-     src/assets/photos/p01.asset.json ... p10.asset.json
-     src/assets/hero-video.asset.json
-     src/assets/logo.asset.json
-     src/assets/hero-poster.asset.json (unused, safe to delete)
-     src/assets/gallery-*.jpg (unused leftover files, safe to delete
-       if nothing else in the code references them)
+Fix: added public/og-image.jpg (uses your cabin exterior photo) and
+updated src/routes/__root.tsx to point og:image/twitter:image at
+your own domain: https://ishas-cabin-escapes-xxt2.vercel.app/og-image.jpg
 
-3. Commit and push:
-     git add .
-     git commit -m "Replace Lovable asset pointers with real committed files"
-     git push
+TO APPLY:
+1. Unzip into your repo root, overwrite when prompted
+2. git add .
+3. git commit -m "Fix og:image to use self-hosted preview image"
+4. git push
 
-4. Vercel auto-redeploys. Everything - photos, hero video, logo - will
-   now be self-contained in the repo and work with zero dependency on
-   Lovable's servers.
-
-Tested: full production build (npm run build) passes cleanly with
-these changes, all assets resolve and bundle correctly.
+NOTE: Once Vercel redeploys, old cached previews on Messenger/Facebook
+may take a while to refresh (they cache scraped previews). If it still
+doesn't show up right away after deploying, you can force Facebook to
+re-scrape using: https://developers.facebook.com/tools/debug/
+(paste your site URL and click "Scrape Again")
