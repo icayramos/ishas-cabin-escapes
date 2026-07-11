@@ -991,7 +991,7 @@ function TourModal({ open, onClose }: { open: boolean; onClose: () => void }) {
         controls
         autoPlay
         playsInline
-        className="max-h-[85vh] w-full max-w-3xl rounded-2xl bg-black"
+        className="h-full max-h-screen w-full max-w-none bg-black"
         onClick={(e) => e.stopPropagation()}
       />
     </div>
