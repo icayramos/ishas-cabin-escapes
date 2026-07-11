@@ -805,7 +805,7 @@ function Contact() {
             const data = new FormData(e.currentTarget);
             const msg = `Hi Isha's Cabin! I'm ${data.get("name")}, planning a stay on ${data.get("date")} for ${data.get("guests")} guest(s). ${data.get("message") ?? ""}`;
             window.open(
-              `https://m.me/ishascabin?text=${encodeURIComponent(msg)}`,
+              `${MESSENGER_URL}?text=${encodeURIComponent(msg)}`,
               "_blank",
             );
             setSent(true);
