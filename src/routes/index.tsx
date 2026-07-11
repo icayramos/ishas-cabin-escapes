@@ -928,6 +928,15 @@ function Footer() {
             >
               <Facebook className="h-4 w-4" />
             </a>
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 transition hover:bg-cream hover:text-primary"
+              aria-label="TikTok"
+            >
+              <TikTokIcon className="h-4 w-4" />
+            </a>
           </div>
         </div>
         <div>
