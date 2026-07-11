@@ -56,8 +56,18 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const FB_URL = "https://facebook.com/ishascabin";
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M19.6 6.3a5.6 5.6 0 0 1-3.4-1.2 5.6 5.6 0 0 1-2.1-3.6h-3.3v13.5a2.7 2.7 0 1 1-1.9-2.6V9.1a6 6 0 1 0 5.2 5.9V9.3a8.9 8.9 0 0 0 5.5 1.9V7.9c-.1 0 0 0 0-1.6Z" />
+    </svg>
+  );
+}
+
+const FB_URL = "https://www.facebook.com/profile.php?id=61574204461408";
 const IG_URL = "https://instagram.com/ishascabin";
+const TIKTOK_URL = "https://www.tiktok.com/@ishascabin";
+const MESSENGER_URL = "https://m.me/61574204461408";
 const PHONE = "0962 702 7569";
 const PHONE_TEL = "+639627027569";
 const MAPS_URL =
@@ -794,6 +804,20 @@ function Contact() {
                 <p className="text-sm text-foreground">@ishascabin</p>
               </div>
             </a>
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 rounded-2xl border border-border bg-background px-5 py-4 transition hover:border-sage"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sage/15 text-sage">
+                <TikTokIcon className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">TikTok</p>
+                <p className="text-sm text-foreground">@ishascabin</p>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -803,7 +827,7 @@ function Contact() {
             const data = new FormData(e.currentTarget);
             const msg = `Hi Isha's Cabin! I'm ${data.get("name")}, planning a stay on ${data.get("date")} for ${data.get("guests")} guest(s). ${data.get("message") ?? ""}`;
             window.open(
-              `https://m.me/ishascabin?text=${encodeURIComponent(msg)}`,
+              `${MESSENGER_URL}?text=${encodeURIComponent(msg)}`,
               "_blank",
             );
             setSent(true);
@@ -903,6 +927,15 @@ function Footer() {
               aria-label="Facebook"
             >
               <Facebook className="h-4 w-4" />
+            </a>
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 transition hover:bg-cream hover:text-primary"
+              aria-label="TikTok"
+            >
+              <TikTokIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
