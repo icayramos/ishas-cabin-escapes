@@ -804,6 +804,20 @@ function Contact() {
                 <p className="text-sm text-foreground">@ishascabin</p>
               </div>
             </a>
+            <a
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 rounded-2xl border border-border bg-background px-5 py-4 transition hover:border-sage"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sage/15 text-sage">
+                <TikTokIcon className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground">TikTok</p>
+                <p className="text-sm text-foreground">@ishascabin</p>
+              </div>
+            </a>
           </div>
         </div>
 
