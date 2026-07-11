@@ -1,22 +1,22 @@
-HOW TO APPLY THIS FIX (link preview image for Messenger/Facebook/etc)
+HOW TO APPLY THIS FIX (v2 - proper landscape og:image for Messenger)
 =======================================================================
 
-Problem: og:image meta tag pointed to Lovable's own storage bucket
-instead of your site, so link previews (Messenger, FB, etc.) had
-nothing reliable to load.
+Problem: previous og-image.jpg was a tall portrait photo (573x1018).
+Facebook's web Sharing Debugger tolerated it, but Messenger's app
+likely rejected/ignored it because it's far outside the recommended
+1.91:1 landscape ratio.
 
-Fix: added public/og-image.jpg (uses your cabin exterior photo) and
-updated src/routes/__root.tsx to point og:image/twitter:image at
-your own domain: https://ishas-cabin-escapes-xxt2.vercel.app/og-image.jpg
+Fix: replaced public/og-image.jpg with a proper 1200x630 landscape
+version (sharp centered photo + blurred background fill), and added
+og:image:width / height / type / secure_url meta tags in __root.tsx.
 
 TO APPLY:
 1. Unzip into your repo root, overwrite when prompted
 2. git add .
-3. git commit -m "Fix og:image to use self-hosted preview image"
+3. git commit -m "Fix og:image to proper landscape format for Messenger"
 4. git push
-
-NOTE: Once Vercel redeploys, old cached previews on Messenger/Facebook
-may take a while to refresh (they cache scraped previews). If it still
-doesn't show up right away after deploying, you can force Facebook to
-re-scrape using: https://developers.facebook.com/tools/debug/
-(paste your site URL and click "Scrape Again")
+5. After Vercel redeploys, go to
+   https://developers.facebook.com/tools/debug/ again, paste your URL,
+   click "Scrape Again" to force-refresh the cache
+6. Try sending the link in Messenger again (may take a few minutes
+   for Messenger's own cache to catch up even after Facebook rescrapes)
