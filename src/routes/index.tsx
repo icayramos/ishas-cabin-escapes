@@ -56,6 +56,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M19.6 6.3a5.6 5.6 0 0 1-3.4-1.2 5.6 5.6 0 0 1-2.1-3.6h-3.3v13.5a2.7 2.7 0 1 1-1.9-2.6V9.1a6 6 0 1 0 5.2 5.9V9.3a8.9 8.9 0 0 0 5.5 1.9V7.9c-.1 0 0 0 0-1.6Z" />
+    </svg>
+  );
+}
+
 const FB_URL = "https://www.facebook.com/profile.php?id=61574204461408";
 const IG_URL = "https://instagram.com/ishascabin";
 const TIKTOK_URL = "https://www.tiktok.com/@ishascabin";
