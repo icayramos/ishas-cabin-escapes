@@ -56,8 +56,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const FB_URL = "https://facebook.com/ishascabin";
+const FB_URL = "https://www.facebook.com/profile.php?id=61574204461408";
 const IG_URL = "https://instagram.com/ishascabin";
+const TIKTOK_URL = "https://www.tiktok.com/@ishascabin";
+const MESSENGER_URL = "https://m.me/61574204461408";
 const PHONE = "0962 702 7569";
 const PHONE_TEL = "+639627027569";
 const MAPS_URL =
